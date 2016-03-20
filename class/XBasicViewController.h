@@ -12,6 +12,8 @@
 
 #import <UIKit/UIKit.h>
 
+#import "UIFont+MaterialDesignIcons.h"
+
 @interface XBasicViewController : UIViewController
 
 @end

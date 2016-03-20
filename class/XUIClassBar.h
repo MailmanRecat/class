@@ -12,7 +12,9 @@
 
 @property( nonatomic, strong ) UIView      *contentView;
 @property( nonatomic, strong ) UITextField *tf;
-
 @property( nonatomic, strong ) UIButton    *leftBarItem;
+
+- (void)setFakeStatusBar:(UIView *)statusBar;
+- (void)removeFakeStatusBar;
 
 @end

@@ -28,6 +28,22 @@
     return self;
 }
 
+- (void)setFakeStatusBar:(UIView *)statusBar
+{
+    [statusBar setTag:1777];
+    [self addSubview:statusBar];
+    [statusBar setTranslatesAutoresizingMaskIntoConstraints:NO];
+    [statusBar.topAnchor constraintEqualToAnchor:self.topAnchor].active = YES;
+    [statusBar.leftAnchor constraintEqualToAnchor:self.leftAnchor].active = YES;
+    [statusBar.rightAnchor constraintEqualToAnchor:self.rightAnchor].active = YES;
+    [statusBar.heightAnchor constraintEqualToConstant:20].active = YES;
+}
+
+- (void)removeFakeStatusBar
+{
+    [[self viewWithTag:1777] removeFromSuperview];
+}
+
 - (void)UI
 {
     [self setTranslatesAutoresizingMaskIntoConstraints:NO];
