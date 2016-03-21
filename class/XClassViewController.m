@@ -6,7 +6,10 @@
 //  Copyright © 2016 com.caine. All rights reserved.
 //
 
+#import "XSearchFieldViewController.h"
+
 #import "XClassViewController.h"
+#import "XOptionsPickerViewController.h"
 
 #import "XUIClassBar.h"
 #import "XUIFloatingButton.h"
@@ -42,6 +45,8 @@
         XUIClassBar *f = [[XUIClassBar alloc] init];
         f.backgroundColor = self.view.tintColor;
         f.tf.placeholder = @"Search For Class";
+        [f.leftBarItem addTarget:self action:@selector(search) forControlEvents:UIControlEventTouchUpInside];
+        [f.tf addTarget:self action:@selector(search) forControlEvents:UIControlEventTouchUpInside];
         [self.view addSubview:f];
         [f.topAnchor constraintEqualToAnchor:self.view.topAnchor].active = YES;
         [f.leftAnchor constraintEqualToAnchor:self.view.leftAnchor].active = YES;
@@ -77,9 +82,9 @@
     });
 }
 
-- (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event
-{
-    [self.view endEditing:YES];
+//- (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event
+//{
+//    [self.view endEditing:YES];
 //    [self.view addSubview:self.drawer];
 //    [self.drawer.topAnchor constraintEqualToAnchor:self.view.topAnchor].active = YES;
 //    [self.drawer.leftAnchor constraintEqualToAnchor:self.view.leftAnchor].active = YES;
@@ -89,6 +94,17 @@
 //    self.hideStatusBar = YES;
 //    
 //    [self.drawer openDrawer];
+//    
+//    XOptionsPickerViewController *p = [[XOptionsPickerViewController alloc] init];
+//    p.modalPresentationStyle = UIModalPresentationOverCurrentContext;
+//    
+//    [self presentViewController:p animated:NO completion:nil];
+//}
+
+- (void)search
+{
+    NSLog(@"search");
+    [self presentViewController:[XSearchFieldViewController new] animated:YES completion:nil];
 }
 
 - (void)setHideStatusBar:(BOOL)hideStatusBar

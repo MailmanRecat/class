@@ -9,7 +9,7 @@
 #import "XUIClassBar.h"
 #import "UIFont+MaterialDesignIcons.h"
 
-@interface XUIClassBar()
+@interface XUIClassBar()<UITextFieldDelegate>
 
 @property( nonatomic, strong ) UIStackView *stackView;
 @property( nonatomic, strong ) UIView      *stackIndicator;
@@ -44,6 +44,11 @@
     [[self viewWithTag:1777] removeFromSuperview];
 }
 
+- (BOOL)textFieldShouldBeginEditing:(UITextField *)textField
+{
+    return NO;
+}
+
 - (void)UI
 {
     [self setTranslatesAutoresizingMaskIntoConstraints:NO];
@@ -66,10 +71,11 @@
         f.leftView.backgroundColor = [UIColor whiteColor];
         f.leftViewMode = UITextFieldViewModeAlways;
         f.clearButtonMode = UITextFieldViewModeWhileEditing;
+        f.delegate = self;
         f.leftView = ({
             UIButton *b = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 44, 44)];
             [b.titleLabel setFont:[UIFont MaterialDesignIcons]];
-            [b setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
+            [b setTitleColor:self.tintColor forState:UIControlStateNormal];
             [b setTitle:[UIFont mdiMenu] forState:UIControlStateNormal];
             b;
         });

@@ -24,6 +24,9 @@
 		E4C4569C1C9EEACA0003C460 /* UIView+XUIView.m in Sources */ = {isa = PBXBuildFile; fileRef = E4C4569B1C9EEACA0003C460 /* UIView+XUIView.m */; };
 		E4C4569F1C9EED160003C460 /* XUIDrawerView.m in Sources */ = {isa = PBXBuildFile; fileRef = E4C4569E1C9EED160003C460 /* XUIDrawerView.m */; };
 		E4C456A21C9F02650003C460 /* XUIScrollTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = E4C456A11C9F02650003C460 /* XUIScrollTableView.m */; };
+		E4C456A51C9F7A910003C460 /* XBasicPickerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E4C456A41C9F7A910003C460 /* XBasicPickerViewController.m */; };
+		E4C456A81C9F7AE00003C460 /* XOptionsPickerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E4C456A71C9F7AE00003C460 /* XOptionsPickerViewController.m */; };
+		E4C456AB1C9FDCD50003C460 /* XSearchFieldViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E4C456AA1C9FDCD50003C460 /* XSearchFieldViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -77,6 +80,12 @@
 		E4C4569E1C9EED160003C460 /* XUIDrawerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XUIDrawerView.m; sourceTree = "<group>"; };
 		E4C456A01C9F02650003C460 /* XUIScrollTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XUIScrollTableView.h; sourceTree = "<group>"; };
 		E4C456A11C9F02650003C460 /* XUIScrollTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XUIScrollTableView.m; sourceTree = "<group>"; };
+		E4C456A31C9F7A910003C460 /* XBasicPickerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XBasicPickerViewController.h; sourceTree = "<group>"; };
+		E4C456A41C9F7A910003C460 /* XBasicPickerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XBasicPickerViewController.m; sourceTree = "<group>"; };
+		E4C456A61C9F7AE00003C460 /* XOptionsPickerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XOptionsPickerViewController.h; sourceTree = "<group>"; };
+		E4C456A71C9F7AE00003C460 /* XOptionsPickerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XOptionsPickerViewController.m; sourceTree = "<group>"; };
+		E4C456A91C9FDCD50003C460 /* XSearchFieldViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XSearchFieldViewController.h; sourceTree = "<group>"; };
+		E4C456AA1C9FDCD50003C460 /* XSearchFieldViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XSearchFieldViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -136,6 +145,12 @@
 				E4C4568D1C9EDF910003C460 /* XClassViewController.m */,
 				E4C456861C9EDF1B0003C460 /* XBasicViewController.h */,
 				E4C456871C9EDF1B0003C460 /* XBasicViewController.m */,
+				E4C456A91C9FDCD50003C460 /* XSearchFieldViewController.h */,
+				E4C456AA1C9FDCD50003C460 /* XSearchFieldViewController.m */,
+				E4C456A31C9F7A910003C460 /* XBasicPickerViewController.h */,
+				E4C456A41C9F7A910003C460 /* XBasicPickerViewController.m */,
+				E4C456A61C9F7AE00003C460 /* XOptionsPickerViewController.h */,
+				E4C456A71C9F7AE00003C460 /* XOptionsPickerViewController.m */,
 				E4C456921C9EE2BE0003C460 /* UIFont+MaterialDesignIcons.h */,
 				E4C456931C9EE2BE0003C460 /* UIFont+MaterialDesignIcons.m */,
 				E4C456951C9EE2CE0003C460 /* materialdesignicons-webfont.ttf */,
@@ -325,9 +340,12 @@
 				E4C4569F1C9EED160003C460 /* XUIDrawerView.m in Sources */,
 				E4C4568B1C9EDF540003C460 /* XNavigationController.m in Sources */,
 				E41EA77D1C9C60E20084A861 /* AppDelegate.m in Sources */,
+				E4C456A81C9F7AE00003C460 /* XOptionsPickerViewController.m in Sources */,
 				E4C456991C9EEA850003C460 /* XUIFloatingButton.m in Sources */,
 				E4C456881C9EDF1B0003C460 /* XBasicViewController.m in Sources */,
 				E4C456A21C9F02650003C460 /* XUIScrollTableView.m in Sources */,
+				E4C456A51C9F7A910003C460 /* XBasicPickerViewController.m in Sources */,
+				E4C456AB1C9FDCD50003C460 /* XSearchFieldViewController.m in Sources */,
 				E4C4568E1C9EDF910003C460 /* XClassViewController.m in Sources */,
 				E41EA77A1C9C60E20084A861 /* main.m in Sources */,
 				E4C456941C9EE2BE0003C460 /* UIFont+MaterialDesignIcons.m in Sources */,

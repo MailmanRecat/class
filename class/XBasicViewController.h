@@ -12,8 +12,11 @@
 
 #import <UIKit/UIKit.h>
 
+#import "UIView+XUIView.h"
 #import "UIFont+MaterialDesignIcons.h"
 
 @interface XBasicViewController : UIViewController
+
+- (void)dismissSelf;
 
 @end

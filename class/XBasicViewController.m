@@ -16,6 +16,11 @@
     [self.view setBackgroundColor:[UIColor whiteColor]];
 }
 
+- (void)dismissSelf
+{
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];

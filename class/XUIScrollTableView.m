@@ -10,6 +10,8 @@
 
 @interface XUIScrollTableView()<UITableViewDataSource, UITableViewDelegate>
 
+@property( nonatomic, strong ) NSDictionary<NSString *, NSArray *> *data;
+
 @end
 
 @implementation XUIScrollTableView
@@ -18,19 +20,35 @@
 {
     NSDictionary *data = @{
                            @"mon": @[
-                                   
+                                   @{
+                                       @"time": @"9:00",
+                                       @"name": @"fuck",
+                                       @"class": @1
+                                       },
+                                   @{
+                                       @"time": @"10:00",
+                                       @"name": @"dick",
+                                       @"class": @2
+                                       },
+                                   @{
+                                       @"time": @"12:00",
+                                       @"name": @"mike",
+                                       @"class": @3
+                                       }
                                    ]
                            };
+    
+    self.data = data;
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return 2;
+    return ((NSArray *)self.data[@"mon"]).count;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 4;
+    return [((NSNumber *)((NSDictionary *)((NSArray *)self.data[@"mon"])[section])[@"class"]) integerValue];
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -40,7 +58,9 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return [UITableViewCell new];
+    UITableViewCell *C = [UITableViewCell new];
+    C.textLabel.text = ((NSDictionary *)((NSArray *)self.data[@"mon"])[indexPath.section])[@"name"];
+    return C;
 }
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView
@@ -53,6 +73,7 @@
     self = [super init];
     if( self )
     {
+        [self demo];
         [self UI];
     }
     return self;
