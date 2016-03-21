@@ -7,6 +7,7 @@
 //
 
 #import "XSearchFieldViewController.h"
+#import "XClassEdtingViewController.h"
 
 @implementation XSearchCache
 
@@ -60,7 +61,7 @@
                                                     @"layout",
                                                     @"margins"                                                    ]];
     self.searchPool = [NSMutableArray array];
-    self.placeholderString = @"Search For Class";
+    self.placeholderString = @"Search for course";
     
     [self UI];
     [self addNotificationObserver];
@@ -78,17 +79,28 @@
     [self.searchField becomeFirstResponder];
 }
 
-- (void)addNotificationObserver{
+- (void)addNotificationObserver
+{
     NSNotificationCenter *center = [NSNotificationCenter defaultCenter];
     [center addObserver:self
                selector:@selector(willKeyBoardChangeFrame:)
                    name:UIKeyboardWillChangeFrameNotification
                  object:nil];
+    [center addObserver:self
+               selector:@selector(didKeyBoardShow:)
+                   name:UIKeyboardDidShowNotification
+                 object:nil];
 }
 
-- (void)willKeyBoardChangeFrame:(NSNotification *)keyboardInfo{
+- (void)willKeyBoardChangeFrame:(NSNotification *)keyboardInfo
+{
     NSDictionary *info = [keyboardInfo userInfo];
     self.heightForKeyboard = self.view.frame.size.height - [[info objectForKey:UIKeyboardFrameEndUserInfoKey] CGRectValue].origin.y;
+}
+
+- (void)didKeyBoardShow:(NSNotification *)info
+{
+    [self viewShouldUpdateLayout];
 }
 
 - (void)viewShouldUpdateLayout
@@ -101,7 +113,12 @@
                      }completion:nil];
     
     [self.fox reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationFade];
-    self.tipBoard.text = [NSString stringWithFormat:@"%ld Found", [self.fox numberOfRowsInSection:0]];
+    self.tipBoard.text = [self tip];
+}
+
+- (NSString *)tip
+{
+    return self.searchField.text.length == 0 ? @"History" : [NSString stringWithFormat:@"%ld Found", [self.fox numberOfRowsInSection:0]];
 }
 
 - (CGFloat)heightForContentView
@@ -123,16 +140,20 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UITableViewCell *c = [UITableViewCell new];
-    c.textLabel.text = self.searchField.text.length == 0 ? self.history[indexPath.row] : self.searchPool[indexPath.row];
-    c.layoutMargins = UIEdgeInsetsZero;
-    c.separatorInset = UIEdgeInsetsZero;
-    return c;
+    UITableViewFunctionalXCell *XC = [tableView dequeueXBorderReusebleCell];
+    XC.textLabel.text = self.searchField.text.length == 0 ? self.history[indexPath.row] : self.searchPool[indexPath.row];
+//    XC.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+    
+    XC.useBorder = [tableView isLastRow:indexPath] ? NO : YES;
+    
+    return XC;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    
+    [self.navigationController pushViewController:[XClassEdtingViewController new] animated:YES];
 }
 
 - (void)textFieldOnEdting:(UITextField *)textField
@@ -213,6 +234,15 @@
     [border.leftAnchor constraintEqualToAnchor:self.contentView.leftAnchor].active = YES;
     [border.rightAnchor constraintEqualToAnchor:self.contentView.rightAnchor].active = YES;
     [border.bottomAnchor constraintEqualToAnchor:self.contentView.topAnchor constant:43.5].active = YES;
+    
+    UIView *bborder = [[UIView alloc] init];
+    bborder.backgroundColor = [UIColor colorWithRed:200 / 255.0 green:199 / 255.0 blue:204 / 255.0 alpha:1];
+    bborder.translatesAutoresizingMaskIntoConstraints = NO;
+    [self.contentView addSubview:bborder];
+    [bborder.heightAnchor constraintEqualToConstant:0.5].active = YES;
+    [bborder.leftAnchor constraintEqualToAnchor:self.contentView.leftAnchor].active = YES;
+    [bborder.rightAnchor constraintEqualToAnchor:self.contentView.rightAnchor].active = YES;
+    [bborder.bottomAnchor constraintEqualToAnchor:self.contentView.topAnchor constant:87.5].active = YES;
     
     self.fox = ({
         UITableView *f = [[UITableView alloc] initWithFrame:CGRectZero style:UITableViewStylePlain];

@@ -34,6 +34,8 @@
 		E4C456BA1CA026650003C460 /* XUILabel.m in Sources */ = {isa = PBXBuildFile; fileRef = E4C456B91CA026650003C460 /* XUILabel.m */; };
 		E4C456BD1CA029D90003C460 /* XUIClassEdtingBar.m in Sources */ = {isa = PBXBuildFile; fileRef = E4C456BC1CA029D90003C460 /* XUIClassEdtingBar.m */; };
 		E4C456C01CA02FC50003C460 /* XClass.m in Sources */ = {isa = PBXBuildFile; fileRef = E4C456BF1CA02FC50003C460 /* XClass.m */; };
+		E4C456C31CA050C50003C460 /* UITableViewFunctionalXCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E4C456C21CA050C50003C460 /* UITableViewFunctionalXCell.m */; };
+		E4C456C61CA05CF50003C460 /* UITableSegmentHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = E4C456C51CA05CF50003C460 /* UITableSegmentHeaderView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -107,6 +109,10 @@
 		E4C456BC1CA029D90003C460 /* XUIClassEdtingBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XUIClassEdtingBar.m; sourceTree = "<group>"; };
 		E4C456BE1CA02FC50003C460 /* XClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XClass.h; sourceTree = "<group>"; };
 		E4C456BF1CA02FC50003C460 /* XClass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XClass.m; sourceTree = "<group>"; };
+		E4C456C11CA050C50003C460 /* UITableViewFunctionalXCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UITableViewFunctionalXCell.h; sourceTree = "<group>"; };
+		E4C456C21CA050C50003C460 /* UITableViewFunctionalXCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UITableViewFunctionalXCell.m; sourceTree = "<group>"; };
+		E4C456C41CA05CF50003C460 /* UITableSegmentHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UITableSegmentHeaderView.h; sourceTree = "<group>"; };
+		E4C456C51CA05CF50003C460 /* UITableSegmentHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UITableSegmentHeaderView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -166,6 +172,8 @@
 				E4C456B21CA024F40003C460 /* UITableViewFunctionalCell.m */,
 				E4C456B31CA024F40003C460 /* UITableViewFunctional2Cell.h */,
 				E4C456B41CA024F40003C460 /* UITableViewFunctional2Cell.m */,
+				E4C456C11CA050C50003C460 /* UITableViewFunctionalXCell.h */,
+				E4C456C21CA050C50003C460 /* UITableViewFunctionalXCell.m */,
 				E4C456891C9EDF540003C460 /* XNavigationController.h */,
 				E4C4568A1C9EDF540003C460 /* XNavigationController.m */,
 				E4C4568C1C9EDF910003C460 /* XClassViewController.h */,
@@ -237,6 +245,8 @@
 				E4C4569E1C9EED160003C460 /* XUIDrawerView.m */,
 				E4C456A01C9F02650003C460 /* XUIScrollTableView.h */,
 				E4C456A11C9F02650003C460 /* XUIScrollTableView.m */,
+				E4C456C41CA05CF50003C460 /* UITableSegmentHeaderView.h */,
+				E4C456C51CA05CF50003C460 /* UITableSegmentHeaderView.m */,
 			);
 			name = UI;
 			sourceTree = "<group>";
@@ -382,7 +392,9 @@
 				E4C456991C9EEA850003C460 /* XUIFloatingButton.m in Sources */,
 				E4C456881C9EDF1B0003C460 /* XBasicViewController.m in Sources */,
 				E4C456A21C9F02650003C460 /* XUIScrollTableView.m in Sources */,
+				E4C456C61CA05CF50003C460 /* UITableSegmentHeaderView.m in Sources */,
 				E4C456BD1CA029D90003C460 /* XUIClassEdtingBar.m in Sources */,
+				E4C456C31CA050C50003C460 /* UITableViewFunctionalXCell.m in Sources */,
 				E4C456A51C9F7A910003C460 /* XBasicPickerViewController.m in Sources */,
 				E4C456AB1C9FDCD50003C460 /* XSearchFieldViewController.m in Sources */,
 				E4C4568E1C9EDF910003C460 /* XClassViewController.m in Sources */,

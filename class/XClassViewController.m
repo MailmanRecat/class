@@ -103,7 +103,9 @@
 
 - (void)search
 {
-    [self presentViewController:[XClassEdtingViewController new] animated:YES completion:nil];
+    XNavigationController *X = [[XNavigationController alloc] initWithRootViewController:[XSearchFieldViewController new]];
+    
+    [self presentViewController:X animated:YES completion:nil];
 }
 
 - (void)setHideStatusBar:(BOOL)hideStatusBar

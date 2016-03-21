@@ -16,6 +16,8 @@
 #import "UIFont+MaterialDesignIcons.h"
 #import "UITableView+Fox.h"
 
+#import "XNavigationController.h"
+
 @interface XBasicViewController : UIViewController
 
 - (void)dismissSelf;

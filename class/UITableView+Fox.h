@@ -10,14 +10,21 @@
 #import "UITableViewFunctionalCell.h"
 #import "UITableViewFunctional2Cell.h"
 
+#import "UITableViewFunctionalXCell.h"
+#import "UITableSegmentHeaderView.h"
+
 @interface UITableView (Fox)
 
 - (UITableViewCell *)dequeueDefaultReusebleCell;
-- (UITableViewFunctionalCell *)dequeueDefaultColorReusebleCell;
-- (UITableViewFunctionalCell *)dequeueDefaultColor2ReusebleCell;
+- (UITableViewFunctionalCell  *)deququeDefaultDatePickerReusebleCell;
+- (UITableViewFunctionalCell  *)dequeueDefaultColorReusebleCell;
+- (UITableViewFunctionalCell  *)dequeueDefaultColor2ReusebleCell;
 - (UITableViewFunctional2Cell *)dequeueDefaultSwitchReusebleCell;
 - (UITableViewFunctional2Cell *)dequeueDefaultBIGImageReusebleCell;
 - (UITableViewCell *)dequeueReusebleCellWithText:(NSString *)text textColor:(UIColor *)textColor type:(UITableViewCellAccessoryType)type;
+
+- (UITableViewFunctionalXCell *)dequeueXBorderReusebleCell;
+- (UITableSegmentHeaderView   *)dequeueSegmentHeaderReusebleCell;
 
 - (UITableViewHeaderFooterView *)dequeueDefaultHeaderFooterViewThenText:(NSString *)text;
 

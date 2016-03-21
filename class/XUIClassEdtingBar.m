@@ -31,7 +31,7 @@
 - (void)UI
 {
     [self setTranslatesAutoresizingMaskIntoConstraints:NO];
-    [self.heightAnchor constraintEqualToConstant:118.0f].active = YES;
+    [self.heightAnchor constraintEqualToConstant:76.0f].active = YES;
     
     self.contentView = ({
         UIView *f = [UIView new];
@@ -48,45 +48,54 @@
         UIButton *b = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 56, 56)];
         b.titleLabel.font = [UIFont MaterialDesignIcons];
         [self.contentView addSubview:b];
-        [b setTitle:[UIFont mdiClose] forState:UIControlStateNormal];
-        [b setTitleColor:[UIColor colorWithWhite:102 / 255.0 alpha:1] forState:UIControlStateNormal];
+        [b setTitle:[UIFont mdiArrowLeft] forState:UIControlStateNormal];
+        [b setTitleColor:self.tintColor forState:UIControlStateNormal];
         b;
     });
     
-    NSArray *weekdays = @[ @"S", @"M", @"T", @"W", @"T", @"F", @"S" ];
+    UIView *border = [[UIView alloc] init];
+    border.backgroundColor = [UIColor colorWithRed:200 / 255.0 green:199 / 255.0 blue:204 / 255.0 alpha:1];
+    border.translatesAutoresizingMaskIntoConstraints = NO;
+    [self.contentView addSubview:border];
+    [border.heightAnchor constraintEqualToConstant:0.5].active = YES;
+    [border.leftAnchor constraintEqualToAnchor:self.contentView.leftAnchor].active = YES;
+    [border.rightAnchor constraintEqualToAnchor:self.contentView.rightAnchor].active = YES;
+    [border.bottomAnchor constraintEqualToAnchor:self.contentView.bottomAnchor].active = YES;
     
-    self.stackView = [[UIStackView alloc] initWithArrangedSubviews:({
-        __block NSMutableArray<__kindof UIView *> *labels = [NSMutableArray array];
-        [weekdays enumerateObjectsUsingBlock:^(NSString *day, NSUInteger index, BOOL *sS){
-            UILabel *l = [[UILabel alloc] init];
-            l.textColor = self.tintColor;
-            l.text = day;
-            l.textAlignment = NSTextAlignmentCenter;
-            [labels addObject:l];
-        }];
-        labels;
-    })];
-    self.stackView.alignment = UIStackViewAlignmentCenter;
-    self.stackView.axis = UILayoutConstraintAxisHorizontal;
-    self.stackView.spacing = .0f;
-    self.stackView.distribution = UIStackViewDistributionFillEqually;
-    self.stackView.translatesAutoresizingMaskIntoConstraints = NO;
-    
-    [self.contentView addSubview:self.stackView];
-    [self.stackView.heightAnchor constraintEqualToConstant:42].active = YES;
-    [self.stackView.leftAnchor constraintEqualToAnchor:self.contentView.leftAnchor constant:8].active = YES;
-    [self.stackView.rightAnchor constraintEqualToAnchor:self.contentView.rightAnchor constant:-8].active = YES;
-    [self.stackView.bottomAnchor constraintEqualToAnchor:self.contentView.bottomAnchor].active = YES;
-    
-    self.stackIndicator = [[UIView alloc] init];
-    self.stackIndicator.translatesAutoresizingMaskIntoConstraints = NO;
-    self.stackIndicator.backgroundColor = self.tintColor;
-    
-    [self.stackView addSubview:self.stackIndicator];
-    [self.stackIndicator.widthAnchor constraintEqualToAnchor:self.stackView.widthAnchor multiplier:1.0 / weekdays.count].active = YES;
-    [self.stackIndicator.leftAnchor constraintEqualToAnchor:self.stackView.leftAnchor constant:0].active = YES;
-    [self.stackIndicator.bottomAnchor constraintEqualToAnchor:self.stackView.bottomAnchor].active = YES;
-    [self.stackIndicator.heightAnchor constraintEqualToConstant:2.0f].active = YES;
+//    NSArray *weekdays = @[ @"S", @"M", @"T", @"W", @"T", @"F", @"S" ];
+//    
+//    self.stackView = [[UIStackView alloc] initWithArrangedSubviews:({
+//        __block NSMutableArray<__kindof UIView *> *labels = [NSMutableArray array];
+//        [weekdays enumerateObjectsUsingBlock:^(NSString *day, NSUInteger index, BOOL *sS){
+//            UILabel *l = [[UILabel alloc] init];
+//            l.textColor = self.tintColor;
+//            l.text = day;
+//            l.textAlignment = NSTextAlignmentCenter;
+//            [labels addObject:l];
+//        }];
+//        labels;
+//    })];
+//    self.stackView.alignment = UIStackViewAlignmentCenter;
+//    self.stackView.axis = UILayoutConstraintAxisHorizontal;
+//    self.stackView.spacing = .0f;
+//    self.stackView.distribution = UIStackViewDistributionFillEqually;
+//    self.stackView.translatesAutoresizingMaskIntoConstraints = NO;
+//    
+//    [self.contentView addSubview:self.stackView];
+//    [self.stackView.heightAnchor constraintEqualToConstant:42].active = YES;
+//    [self.stackView.leftAnchor constraintEqualToAnchor:self.contentView.leftAnchor constant:8].active = YES;
+//    [self.stackView.rightAnchor constraintEqualToAnchor:self.contentView.rightAnchor constant:-8].active = YES;
+//    [self.stackView.bottomAnchor constraintEqualToAnchor:self.contentView.bottomAnchor].active = YES;
+//    
+//    self.stackIndicator = [[UIView alloc] init];
+//    self.stackIndicator.translatesAutoresizingMaskIntoConstraints = NO;
+//    self.stackIndicator.backgroundColor = self.tintColor;
+//    
+//    [self.stackView addSubview:self.stackIndicator];
+//    [self.stackIndicator.widthAnchor constraintEqualToAnchor:self.stackView.widthAnchor multiplier:1.0 / weekdays.count].active = YES;
+//    [self.stackIndicator.leftAnchor constraintEqualToAnchor:self.stackView.leftAnchor constant:0].active = YES;
+//    [self.stackIndicator.bottomAnchor constraintEqualToAnchor:self.stackView.bottomAnchor].active = YES;
+//    [self.stackIndicator.heightAnchor constraintEqualToConstant:2.0f].active = YES;
 }
 
 @end

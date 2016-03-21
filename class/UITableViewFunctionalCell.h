@@ -20,11 +20,11 @@ static NSString *const REUSE_FUNCTIONAL_CELL_ID_SLIDER  = @"UITABLEVIEW_REUSE_FU
 
 @interface UITableViewFunctionalCell : UITableViewCell
 
-@property( nonatomic, strong ) UITextView   *textView;
-@property( nonatomic, strong ) UITextField  *textField;
-@property( nonatomic, strong ) UIPickerView *picker;
-@property( nonatomic, strong ) UISlider     *slider;
-@property( nonatomic, strong ) UIButton     *button;
+@property( nonatomic, strong ) UITextView       *textView;
+@property( nonatomic, strong ) UITextField      *textField;
+@property( nonatomic, strong ) UIDatePicker     *picker;
+@property( nonatomic, strong ) UISlider         *slider;
+@property( nonatomic, strong ) UIButton         *button;
 
 //For color2
 @property( nonatomic, strong ) UIColor      *color2;

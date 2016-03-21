@@ -21,6 +21,16 @@
     return RC;
 }
 
+- (UITableViewFunctionalCell *)deququeDefaultDatePickerReusebleCell
+{
+    UITableViewFunctionalCell *PC = [self dequeueReusableCellWithIdentifier:REUSE_FUNCTIONAL_CELL_ID_PICKER];
+    if( PC == nil )
+    {
+        PC = [[UITableViewFunctionalCell alloc] initWithReuseString:REUSE_FUNCTIONAL_CELL_ID_PICKER];
+    }
+    return PC;
+}
+
 - (UITableViewFunctionalCell *)dequeueDefaultColor2ReusebleCell
 {
     UITableViewFunctionalCell *RC = [self dequeueReusableCellWithIdentifier:REUSE_FUNCTIONAL_CELL_ID_COLOR2];
@@ -71,6 +81,27 @@
     RC.accessoryType = type;
     
     return RC;
+}
+
+- (UITableViewFunctionalXCell *)dequeueXBorderReusebleCell
+{
+    UITableViewFunctionalXCell *XC = [self dequeueReusableCellWithIdentifier:REUSE_FUNCTIONAL_X_CELL_ID_BORDER];
+    if( XC == nil )
+    {
+        XC = [[UITableViewFunctionalXCell alloc] initWithReuseString:REUSE_FUNCTIONAL_X_CELL_ID_BORDER];
+        XC.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+    }
+    return XC;
+}
+
+- (UITableSegmentHeaderView  *)dequeueSegmentHeaderReusebleCell
+{
+    UITableSegmentHeaderView *SH = [self dequeueReusableHeaderFooterViewWithIdentifier:UITableSegmentHeaderViewReuseID];
+    if( SH == nil )
+    {
+        SH = [[UITableSegmentHeaderView alloc] initWithReuseIdentifier:UITableSegmentHeaderViewReuseID];
+    }
+    return SH;
 }
 
 - (UITableViewHeaderFooterView *)dequeueDefaultHeaderFooterViewThenText:(NSString *)text

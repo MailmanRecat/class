@@ -96,7 +96,9 @@
 
 - (void)initPicker{
     self.picker = ({
-        UIPickerView *p = [[UIPickerView alloc] init];
+        UIDatePicker *p = [[UIDatePicker alloc] init];
+        p.datePickerMode = UIDatePickerModeTime;
+        [p setValue:[UIColor colorWithWhite:107 / 255.0 alpha:1] forKey:@"textColor"];
         [p setTranslatesAutoresizingMaskIntoConstraints:NO];
         [self.contentView addSubview:p];
         [p.topAnchor constraintEqualToAnchor:self.contentView.topAnchor].active = YES;
@@ -185,13 +187,6 @@
     [big.centerYAnchor constraintEqualToAnchor:self.contentView.centerYAnchor].active = YES;
     [big.heightAnchor constraintEqualToConstant:44].active = YES;
     [big.widthAnchor constraintEqualToConstant:44].active = YES;
-}
-
-- (void)prepareForReuse{
-    if( self.picker != nil ){
-        [self.picker selectRow:(int)([self.picker numberOfRowsInComponent:0] / 2) inComponent:0 animated:NO];
-        [self.picker selectRow:(int)([self.picker numberOfRowsInComponent:1] / 2) inComponent:1 animated:NO];
-    }
 }
 
 @end
