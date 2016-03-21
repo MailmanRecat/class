@@ -31,6 +31,7 @@
 @property( nonatomic, strong ) NSLayoutConstraint   *contentViewHeightLayoutGuide;
 
 @property( nonatomic, strong ) UITextField          *searchField;
+@property( nonatomic, strong ) UILabel              *tipBoard;
 @property( nonatomic, strong ) UITableView          *fox;
 
 @property( nonatomic, assign ) CGFloat               heightForKeyboard;
@@ -43,11 +44,51 @@
 {
     [super viewDidLoad];
     
-    self.history = [NSMutableArray arrayWithArray:@[ @"fuck", @"dick", @"nick", @"apple", @"banana", @"chair" ]];
+    self.history = [NSMutableArray arrayWithArray:@[
+                                                    @"fuck", @"dick", @"nick", @"apple", @"banana", @"chair",
+                                                    @"iOS 8",
+                                                    @"introduces",
+                                                    @"the",
+                                                    @"concept",
+                                                    @"of",
+                                                    @"layout",
+                                                    @"margins.",
+                                                    @"By",
+                                                    @"default",
+                                                    @"a",
+                                                    @"view's",
+                                                    @"layout",
+                                                    @"margins"                                                    ]];
     self.searchPool = [NSMutableArray array];
     self.placeholderString = @"Search For Class";
     
     [self UI];
+    [self addNotificationObserver];
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    
+    [self.searchField becomeFirstResponder];
+}
+
+- (void)addNotificationObserver{
+    NSNotificationCenter *center = [NSNotificationCenter defaultCenter];
+    [center addObserver:self
+               selector:@selector(willKeyBoardChangeFrame:)
+                   name:UIKeyboardWillChangeFrameNotification
+                 object:nil];
+}
+
+- (void)willKeyBoardChangeFrame:(NSNotification *)keyboardInfo{
+    NSDictionary *info = [keyboardInfo userInfo];
+    self.heightForKeyboard = self.view.frame.size.height - [[info objectForKey:UIKeyboardFrameEndUserInfoKey] CGRectValue].origin.y;
 }
 
 - (void)viewShouldUpdateLayout
@@ -57,14 +98,15 @@
                      animations:^{
                          self.contentViewHeightLayoutGuide.constant = [self heightForContentView];
                          [self.contentView layoutIfNeeded];
-                     }completion:^(BOOL f){
-                         [self.fox reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationFade];
-                     }];
+                     }completion:nil];
+    
+    [self.fox reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationFade];
+    self.tipBoard.text = [NSString stringWithFormat:@"%ld Found", [self.fox numberOfRowsInSection:0]];
 }
 
 - (CGFloat)heightForContentView
 {
-    CGFloat h = (self.searchField.text.length == 0 ? self.history.count : self.searchPool.count + 1) * 44.0f;
+    CGFloat h = (self.searchField.text.length == 0 ? self.history.count : self.searchPool.count + 2) * 44.0f;
     CGFloat e = X_SVFH - (self.heightForKeyboard + 44 + 8 + 6 + [UIApplication sharedApplication].statusBarFrame.size.height);
     return  h > e ? e : h ;
 }
@@ -88,9 +130,15 @@
     return c;
 }
 
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+}
+
 - (void)textFieldOnEdting:(UITextField *)textField
 {
     __block NSMutableArray *pool = [NSMutableArray array];
+    [pool addObject:textField.text];
     [self.history enumerateObjectsUsingBlock:^(NSString *string, NSUInteger index, BOOL *sS){
         if( [[string lowercaseString] rangeOfString:textField.text.lowercaseString].location != NSNotFound )
         {
@@ -138,10 +186,23 @@
         [f setTranslatesAutoresizingMaskIntoConstraints:NO];
         [self.contentView addSubview:f];
         [f.topAnchor constraintEqualToAnchor:self.contentView.topAnchor].active = YES;
-        [f.leftAnchor constraintEqualToAnchor:self.contentView.leftAnchor constant:8].active = YES;
+        [f.leftAnchor constraintEqualToAnchor:self.contentView.leftAnchor constant:16].active = YES;
         [f.rightAnchor constraintEqualToAnchor:self.contentView.rightAnchor constant:-8].active = YES;
         [f.heightAnchor constraintEqualToConstant:44].active = YES;
         f;
+    });
+    
+    self.tipBoard = ({
+        UILabel *l = [[UILabel alloc] init];
+        l.textColor = self.view.tintColor;
+        l.text = @"History";
+        l.translatesAutoresizingMaskIntoConstraints = NO;
+        [self.contentView addSubview:l];
+        [l.topAnchor constraintEqualToAnchor:self.searchField.bottomAnchor].active = YES;
+        [l.leftAnchor constraintEqualToAnchor:self.contentView.leftAnchor constant:16].active = YES;
+        [l.rightAnchor constraintEqualToAnchor:self.contentView.rightAnchor constant:-8].active = YES;
+        [l.heightAnchor constraintEqualToConstant:44].active = YES;
+        l;
     });
     
     UIView *border = [[UIView alloc] init];
@@ -166,7 +227,7 @@
         f.delegate = self;
         f.dataSource = self;
         [self.contentView addSubview:f];
-        [f.topAnchor constraintEqualToAnchor:self.contentView.topAnchor constant:44].active = YES;
+        [f.topAnchor constraintEqualToAnchor:self.tipBoard.bottomAnchor].active = YES;
         [f.leftAnchor constraintEqualToAnchor:self.contentView.leftAnchor].active = YES;
         [f.rightAnchor constraintEqualToAnchor:self.contentView.rightAnchor].active = YES;
         [f.bottomAnchor constraintEqualToAnchor:self.contentView.bottomAnchor].active = YES;

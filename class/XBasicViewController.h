@@ -14,6 +14,7 @@
 
 #import "UIView+XUIView.h"
 #import "UIFont+MaterialDesignIcons.h"
+#import "UITableView+Fox.h"
 
 @interface XBasicViewController : UIViewController
 

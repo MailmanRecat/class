@@ -1,22 +1,22 @@
 //
-//  XUIClassBar.m
+//  XUIClassEdtingBar.m
 //  class
 //
-//  Created by caine on 3/20/16.
+//  Created by caine on 3/21/16.
 //  Copyright © 2016 com.caine. All rights reserved.
 //
 
-#import "XUIClassBar.h"
+#import "XUIClassEdtingBar.h"
 #import "UIFont+MaterialDesignIcons.h"
 
-@interface XUIClassBar()
+@interface XUIClassEdtingBar()
 
 @property( nonatomic, strong ) UIStackView *stackView;
 @property( nonatomic, strong ) UIView      *stackIndicator;
 
 @end
 
-@implementation XUIClassBar
+@implementation XUIClassEdtingBar
 
 - (instancetype)init
 {
@@ -43,39 +43,15 @@
         [f.bottomAnchor constraintEqualToAnchor:self.bottomAnchor].active = YES;
         f;
     });
-    
-    self.tf = ({
-        UITextField *f = [UITextField new];
-        f.backgroundColor = [UIColor whiteColor];
-        f.leftView.backgroundColor = [UIColor whiteColor];
-        f.leftViewMode = UITextFieldViewModeAlways;
-        f.rightViewMode = UITextFieldViewModeAlways;
-        f.clearButtonMode = UITextFieldViewModeWhileEditing;
-        f.leftView = ({
-            UIButton *b = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 44, 44)];
-            [b.titleLabel setFont:[UIFont MaterialDesignIcons]];
-            [b setTitleColor:self.tintColor forState:UIControlStateNormal];
-            [b setTitle:[UIFont mdiMagnify] forState:UIControlStateNormal];
-            b;
-        });
-        f.rightView = ({
-            UIButton *b = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 44, 44)];
-            [b.titleLabel setFont:[UIFont MaterialDesignIcons]];
-            [b setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
-            [b setTitle:[UIFont mdiAccount] forState:UIControlStateNormal];
-            b;
-        });
-        f.layer.cornerRadius = 4.0f;
-        [f setTranslatesAutoresizingMaskIntoConstraints:NO];
-        [self.contentView addSubview:f];
-        [f.topAnchor constraintEqualToAnchor:self.contentView.topAnchor constant:6].active = YES;
-        [f.leftAnchor constraintEqualToAnchor:self.contentView.leftAnchor constant:8].active = YES;
-        [f.rightAnchor constraintEqualToAnchor:self.contentView.rightAnchor constant:-8].active = YES;
-        [f.heightAnchor constraintEqualToConstant:44.0f].active = YES;
-        f;
+
+    self.leftBarItem = ({
+        UIButton *b = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 56, 56)];
+        b.titleLabel.font = [UIFont MaterialDesignIcons];
+        [self.contentView addSubview:b];
+        [b setTitle:[UIFont mdiClose] forState:UIControlStateNormal];
+        [b setTitleColor:[UIColor colorWithWhite:102 / 255.0 alpha:1] forState:UIControlStateNormal];
+        b;
     });
-    
-    self.leftBarItem = (UIButton *)self.tf.leftView;
     
     NSArray *weekdays = @[ @"S", @"M", @"T", @"W", @"T", @"F", @"S" ];
     
@@ -83,7 +59,7 @@
         __block NSMutableArray<__kindof UIView *> *labels = [NSMutableArray array];
         [weekdays enumerateObjectsUsingBlock:^(NSString *day, NSUInteger index, BOOL *sS){
             UILabel *l = [[UILabel alloc] init];
-            l.textColor = [UIColor whiteColor];
+            l.textColor = self.tintColor;
             l.text = day;
             l.textAlignment = NSTextAlignmentCenter;
             [labels addObject:l];
@@ -104,7 +80,7 @@
     
     self.stackIndicator = [[UIView alloc] init];
     self.stackIndicator.translatesAutoresizingMaskIntoConstraints = NO;
-    self.stackIndicator.backgroundColor = [UIColor whiteColor];
+    self.stackIndicator.backgroundColor = self.tintColor;
     
     [self.stackView addSubview:self.stackIndicator];
     [self.stackIndicator.widthAnchor constraintEqualToAnchor:self.stackView.widthAnchor multiplier:1.0 / weekdays.count].active = YES;

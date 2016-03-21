@@ -9,6 +9,7 @@
 #import "XSearchFieldViewController.h"
 
 #import "XClassViewController.h"
+#import "XClassEdtingViewController.h"
 #import "XOptionsPickerViewController.h"
 
 #import "XUIClassBar.h"
@@ -17,7 +18,7 @@
 
 #import "XUIScrollTableView.h"
 
-@interface XClassViewController()
+@interface XClassViewController()<UITextFieldDelegate>
 
 @property( nonatomic, strong ) XUIClassBar              *bar;
 @property( nonatomic, strong ) XUIDrawerView            *drawer;
@@ -45,8 +46,7 @@
         XUIClassBar *f = [[XUIClassBar alloc] init];
         f.backgroundColor = self.view.tintColor;
         f.tf.placeholder = @"Search For Class";
-        [f.leftBarItem addTarget:self action:@selector(search) forControlEvents:UIControlEventTouchUpInside];
-        [f.tf addTarget:self action:@selector(search) forControlEvents:UIControlEventTouchUpInside];
+        f.tf.delegate = self;
         [self.view addSubview:f];
         [f.topAnchor constraintEqualToAnchor:self.view.topAnchor].active = YES;
         [f.leftAnchor constraintEqualToAnchor:self.view.leftAnchor].active = YES;
@@ -103,8 +103,7 @@
 
 - (void)search
 {
-    NSLog(@"search");
-    [self presentViewController:[XSearchFieldViewController new] animated:YES completion:nil];
+    [self presentViewController:[XClassEdtingViewController new] animated:YES completion:nil];
 }
 
 - (void)setHideStatusBar:(BOOL)hideStatusBar
@@ -114,6 +113,12 @@
         _hideStatusBar = hideStatusBar;
         [self setNeedsStatusBarAppearanceUpdate];
     }
+}
+
+- (BOOL)textFieldShouldBeginEditing:(UITextField *)textField
+{
+    [self search];
+    return NO;
 }
 
 - (BOOL)prefersStatusBarHidden

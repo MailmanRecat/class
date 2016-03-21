@@ -94,6 +94,13 @@
         f.backgroundColor = [UIColor colorWithWhite:236 / 255.0 alpha:1];
         f.delegate = self;
         f.dataSource = self;
+        
+        UILabel *h = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 0, 120)];
+        h.backgroundColor = self.tintColor;
+        h.text = @"Header";
+        
+        f.tableHeaderView = h;
+        
         [self addSubview:f];
         [f.widthAnchor constraintEqualToAnchor:self.widthAnchor].active = YES;
         [f.heightAnchor constraintEqualToAnchor:self.heightAnchor constant:-20].active = YES;
