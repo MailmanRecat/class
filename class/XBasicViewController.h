@@ -12,6 +12,8 @@
 
 #import <UIKit/UIKit.h>
 
+#import "XClass.h"
+
 #import "UIView+XUIView.h"
 #import "UIFont+MaterialDesignIcons.h"
 #import "UITableView+Fox.h"

@@ -31,6 +31,8 @@
 - (BOOL)isTargetTableViewCellAtIndexPath:(NSIndexPath *)indexPath equalToString:(NSString *)string;
 - (BOOL)isTargetTableViewCellAtIndexPath:(NSIndexPath *)indexPath equalToTag:(NSInteger)tag;
 
+- (BOOL)isDirtyEqual:(NSIndexPath *)indexPath1 toIndexPath:(NSIndexPath *)indexPath2;
+
 - (BOOL)isThdLastRow:(NSIndexPath *)indexPath;
 - (BOOL)isSecLastRow:(NSIndexPath *)indexPath;
 - (BOOL)isLastRow:(NSIndexPath *)indexPath;

@@ -65,7 +65,7 @@
         f.translatesAutoresizingMaskIntoConstraints = NO;
         f.backgroundColor = [UIColor orangeColor];
         [self.view insertSubview:f belowSubview:self.bar];
-        [f.topAnchor constraintEqualToAnchor:self.view.topAnchor constant:118].active = YES;
+        [f.topAnchor constraintEqualToAnchor:self.view.topAnchor constant:98].active = YES;
         [f.leftAnchor constraintEqualToAnchor:self.view.leftAnchor].active = YES;
         [f.rightAnchor constraintEqualToAnchor:self.view.rightAnchor].active = YES;
         [f.bottomAnchor constraintEqualToAnchor:self.view.bottomAnchor].active = YES;
@@ -75,6 +75,7 @@
     self.plusFloating = ({
         XUIFloatingButton *f = [[XUIFloatingButton alloc] initFromFont:[UIFont MaterialDesignIcons] title:[UIFont mdiPlus]];
         f.backgroundColor = self.view.tintColor;
+        [f addTarget:self action:@selector(search) forControlEvents:UIControlEventTouchUpInside];
         [self.view addSubview:f];
         [f.rightAnchor constraintEqualToAnchor:self.view.rightAnchor constant:-16].active = YES;
         [f.bottomAnchor constraintEqualToAnchor:self.view.bottomAnchor constant:-16].active = YES;

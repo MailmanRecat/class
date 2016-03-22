@@ -36,6 +36,7 @@
 		E4C456C01CA02FC50003C460 /* XClass.m in Sources */ = {isa = PBXBuildFile; fileRef = E4C456BF1CA02FC50003C460 /* XClass.m */; };
 		E4C456C31CA050C50003C460 /* UITableViewFunctionalXCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E4C456C21CA050C50003C460 /* UITableViewFunctionalXCell.m */; };
 		E4C456C61CA05CF50003C460 /* UITableSegmentHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = E4C456C51CA05CF50003C460 /* UITableSegmentHeaderView.m */; };
+		E4C456C91CA105970003C460 /* XUINoteView.m in Sources */ = {isa = PBXBuildFile; fileRef = E4C456C81CA105960003C460 /* XUINoteView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -113,6 +114,8 @@
 		E4C456C21CA050C50003C460 /* UITableViewFunctionalXCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UITableViewFunctionalXCell.m; sourceTree = "<group>"; };
 		E4C456C41CA05CF50003C460 /* UITableSegmentHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UITableSegmentHeaderView.h; sourceTree = "<group>"; };
 		E4C456C51CA05CF50003C460 /* UITableSegmentHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UITableSegmentHeaderView.m; sourceTree = "<group>"; };
+		E4C456C71CA105960003C460 /* XUINoteView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XUINoteView.h; sourceTree = "<group>"; };
+		E4C456C81CA105960003C460 /* XUINoteView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XUINoteView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -245,6 +248,8 @@
 				E4C4569E1C9EED160003C460 /* XUIDrawerView.m */,
 				E4C456A01C9F02650003C460 /* XUIScrollTableView.h */,
 				E4C456A11C9F02650003C460 /* XUIScrollTableView.m */,
+				E4C456C71CA105960003C460 /* XUINoteView.h */,
+				E4C456C81CA105960003C460 /* XUINoteView.m */,
 				E4C456C41CA05CF50003C460 /* UITableSegmentHeaderView.h */,
 				E4C456C51CA05CF50003C460 /* UITableSegmentHeaderView.m */,
 			);
@@ -405,6 +410,7 @@
 				E4C456B71CA024F40003C460 /* UITableViewFunctional2Cell.m in Sources */,
 				E4C4569C1C9EEACA0003C460 /* UIView+XUIView.m in Sources */,
 				E4C456911C9EE08C0003C460 /* XUIClassBar.m in Sources */,
+				E4C456C91CA105970003C460 /* XUINoteView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

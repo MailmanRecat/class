@@ -115,6 +115,11 @@
     return HF;
 }
 
+- (BOOL)isDirtyEqual:(NSIndexPath *)indexPath1 toIndexPath:(NSIndexPath *)indexPath2
+{
+    return indexPath1.row == indexPath2.row && indexPath1.section == indexPath2.section;
+}
+
 - (BOOL)isTargetTableViewCellAtIndexPath:(NSIndexPath *)indexPath equalToString:(NSString *)string{
     return [[self cellForRowAtIndexPath:indexPath].textLabel.text.lowercaseString isEqualToString:string];
 }

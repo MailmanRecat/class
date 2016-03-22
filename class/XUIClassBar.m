@@ -7,6 +7,7 @@
 //
 
 #import "XUIClassBar.h"
+#import "UIView+XUIView.h"
 #import "UIFont+MaterialDesignIcons.h"
 
 @interface XUIClassBar()
@@ -30,6 +31,7 @@
 
 - (void)UI
 {
+    [self letShadowWithSize:CGSizeMake(0, 3) opacity:.27f radius:3.0f];
     [self setTranslatesAutoresizingMaskIntoConstraints:NO];
     [self.heightAnchor constraintEqualToConstant:118.0f].active = YES;
     

@@ -67,11 +67,6 @@
     [self addNotificationObserver];
 }
 
-- (void)viewWillAppear:(BOOL)animated
-{
-    [super viewWillAppear:animated];
-}
-
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
@@ -124,7 +119,7 @@
 - (CGFloat)heightForContentView
 {
     CGFloat h = (self.searchField.text.length == 0 ? self.history.count : self.searchPool.count + 2) * 44.0f;
-    CGFloat e = X_SVFH - (self.heightForKeyboard + 44 + 8 + 6 + [UIApplication sharedApplication].statusBarFrame.size.height);
+    CGFloat e = X_SVFH - (self.heightForKeyboard + 8 + 6 + [UIApplication sharedApplication].statusBarFrame.size.height);
     return  h > e ? e : h ;
 }
 
@@ -167,7 +162,9 @@
         }
     }];
     self.searchPool = (NSArray *)pool;
-    [self viewShouldUpdateLayout];
+    
+    if( self.heightForKeyboard != 0 )
+        [self viewShouldUpdateLayout];
 }
 
 - (void)UI
@@ -183,7 +180,7 @@
                                     constant:[UIApplication sharedApplication].statusBarFrame.size.height + 6].active = YES;
         [f.leftAnchor constraintEqualToAnchor:self.view.leftAnchor constant:8].active = YES;
         [f.rightAnchor constraintEqualToAnchor:self.view.rightAnchor constant:-8].active = YES;
-        self.contentViewHeightLayoutGuide = [f.heightAnchor constraintEqualToConstant:[self heightForContentView]];
+        self.contentViewHeightLayoutGuide = [f.heightAnchor constraintEqualToConstant:88];
         self.contentViewHeightLayoutGuide.active = YES;
         f;
     });

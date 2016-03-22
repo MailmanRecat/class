@@ -7,6 +7,7 @@
 //
 
 #import "XUIScrollTableView.h"
+#import "XUINoteView.h"
 
 @interface XUIScrollTableView()<UITableViewDataSource, UITableViewDelegate>
 
@@ -95,11 +96,25 @@
         f.delegate = self;
         f.dataSource = self;
         
-        UILabel *h = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 0, 120)];
-        h.backgroundColor = self.tintColor;
-        h.text = @"Header";
+        NSString *note = @"This structure shows a permanent app bar with a floating action button. The app bar absorbs elements from the tablet and mobile bottom bars. An optional bottom bar can be added for additional functionality or action overflow. A side nav overlays all other structural elements. A right nav menu can be accessed temporarily or pinned for permanent display.";
         
-        f.tableHeaderView = h;
+        XUINoteView *N = [[XUINoteView alloc] initWithTitle:@"Note for class badbajasdasdasdasdasdasdasdasda"
+                                                       note:note];
+        
+        CGRect (^dirtyRect)(NSString *, UIFont *) = ^(NSString *string, UIFont *font){
+            return [string boundingRectWithSize:CGSizeMake(375, 10000)
+                                        options:NSStringDrawingUsesLineFragmentOrigin
+                                     attributes:@{
+                                                  NSFontAttributeName: font
+                                                  }
+                                        context:nil];
+        };
+        
+//        NSLog(@"%@", NSStringFromCGRect(dirtyRect(note, N.font)));
+        
+        N.backgroundColor = self.tintColor;
+        N.frame = CGRectMake(0, 0, 0, dirtyRect(note, N.font).size.height + 56 + 16);
+        f.tableHeaderView = N;
         
         [self addSubview:f];
         [f.widthAnchor constraintEqualToAnchor:self.widthAnchor].active = YES;
