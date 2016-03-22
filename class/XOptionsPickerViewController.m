@@ -13,6 +13,8 @@
 @property( nonatomic, strong ) UITableView              *fox;
 @property( nonatomic, strong ) NSLayoutConstraint       *foxTopLayoutGuide;
 
+@property( nonatomic, assign ) BOOL                      reset;
+
 @end
 
 @implementation XOptionsPickerViewController
@@ -31,17 +33,22 @@
                           delay:.00f options:( 7 << 16 )
                      animations:^{
                          self.view.backgroundColor = [UIColor colorWithWhite:0 alpha:0.3];
-                         [self.view removeConstraint:self.foxTopLayoutGuide];
-                         self.foxTopLayoutGuide = [self.fox.bottomAnchor constraintEqualToAnchor:self.view.bottomAnchor];
-                         self.foxTopLayoutGuide.active = YES;
-                         [self.view setNeedsUpdateConstraints];
+                         self.foxTopLayoutGuide.constant = -X_SVFH / 2.0f;
                          [self.view layoutIfNeeded];
                      }completion:nil];
 }
 
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event
 {
-    [self dismissViewControllerAnimated:YES completion:nil];
+    [UIView animateWithDuration:.25f
+                          delay:.0f options:( 7 << 16 )
+                     animations:^{
+                         self.view.backgroundColor = [UIColor clearColor];
+                         self.foxTopLayoutGuide.constant = 0.0f;
+                         [self.view layoutIfNeeded];
+                     }completion:^( BOOL f ){
+                         [self dismissViewControllerAnimated:NO completion:nil];
+                     }];
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -51,7 +58,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 6;
+    return 20;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -61,12 +68,44 @@
     return C;
 }
 
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+}
+
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView
+{
+    if( scrollView.contentOffset.y < 0 && !self.reset )
+    {
+        self.foxTopLayoutGuide.constant -= scrollView.contentOffset.y;
+        NSLog(@"%lf", self.foxTopLayoutGuide.constant);
+        [self.view layoutIfNeeded];
+    }
+}
+
+- (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate
+{
+    if( self.foxTopLayoutGuide.constant < -44 )
+    {
+        self.reset = YES;
+        self.foxTopLayoutGuide.constant = -X_SVFH / 2.0f;
+        [UIView animateWithDuration:.25f
+                              delay:.0f options:( 7 << 16 )
+                         animations:^{
+                             [self.view layoutIfNeeded];
+                         }completion:^(BOOL f){
+                             self.reset = NO;
+                         }];
+    }
+}
+
 - (void)UI
 {
     self.fox = ({
-        UITableView *f = [[UITableView alloc] initWithFrame:CGRectZero style:UITableViewStyleGrouped];
+        UITableView *f = [[UITableView alloc] initWithFrame:CGRectZero style:UITableViewStylePlain];
         f.translatesAutoresizingMaskIntoConstraints = NO;
         f.showsHorizontalScrollIndicator = NO;
+        f.showsVerticalScrollIndicator = YES;
         f.allowsMultipleSelectionDuringEditing = NO;
         f.backgroundColor = [UIColor clearColor];
         f.separatorColor = [UIColor clearColor];
@@ -87,6 +126,11 @@
         self.foxTopLayoutGuide.active = YES;
         f;
     });
+}
+
+- (UIStatusBarStyle)preferredStatusBarStyle
+{
+    return UIStatusBarStyleLightContent;
 }
 
 - (void)didReceiveMemoryWarning

@@ -44,9 +44,8 @@
 {
     self.bar = ({
         XUIClassBar *f = [[XUIClassBar alloc] init];
-        f.backgroundColor = self.view.tintColor;
-        f.tf.placeholder = @"Search For Class";
-        f.tf.delegate = self;
+//        f.tf.placeholder = @"Search For Class";
+//        f.tf.delegate = self;
         [self.view addSubview:f];
         [f.topAnchor constraintEqualToAnchor:self.view.topAnchor].active = YES;
         [f.leftAnchor constraintEqualToAnchor:self.view.leftAnchor].active = YES;
@@ -63,7 +62,6 @@
     self.fox = ({
         XUIScrollTableView *f = [[XUIScrollTableView alloc] init];
         f.translatesAutoresizingMaskIntoConstraints = NO;
-        f.backgroundColor = [UIColor orangeColor];
         [self.view insertSubview:f belowSubview:self.bar];
         [f.topAnchor constraintEqualToAnchor:self.view.topAnchor constant:98].active = YES;
         [f.leftAnchor constraintEqualToAnchor:self.view.leftAnchor].active = YES;
@@ -106,7 +104,9 @@
 {
     XNavigationController *X = [[XNavigationController alloc] initWithRootViewController:[XSearchFieldViewController new]];
     
-    [self presentViewController:X animated:YES completion:nil];
+    XOptionsPickerViewController *op = [[XOptionsPickerViewController alloc] init];
+    op.modalPresentationStyle = UIModalPresentationOverCurrentContext;
+    [self presentViewController:op animated:YES completion:nil];
 }
 
 - (void)setHideStatusBar:(BOOL)hideStatusBar

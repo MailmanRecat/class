@@ -12,8 +12,9 @@
 
 @interface XUIClassBar()
 
-@property( nonatomic, strong ) UIStackView *stackView;
-@property( nonatomic, strong ) UIView      *stackIndicator;
+@property( nonatomic, strong ) UIStackView                      *stackView;
+@property( nonatomic, strong ) UIView                           *stackIndicator;
+@property( nonatomic, strong ) NSLayoutConstraint               *stackIndicatorGuide;
 
 @end
 
@@ -29,11 +30,36 @@
     return self;
 }
 
+- (void)toggle:(UIButton *)button
+{
+    [self indicatorToPosition:button.tag - 1000 animation:YES];
+}
+
+- (void)indicatorToPosition:(NSUInteger)position animation:(BOOL)animation
+{
+    if( position > 6 ) return;
+    
+    self.stackIndicatorGuide.constant = position * (self.stackView.frame.size.width / 7.0);
+    [UIView animateWithDuration:animation ? .25f : .0f delay:.0f options:( 7 << 16 )
+                     animations:^{
+                         [self.stackView layoutIfNeeded];
+                     }completion:^(BOOL f){
+                         
+                     }];
+}
+
+- (void)layoutSubviews
+{
+    [super layoutSubviews];
+}
+
 - (void)UI
 {
     [self letShadowWithSize:CGSizeMake(0, 3) opacity:.27f radius:3.0f];
     [self setTranslatesAutoresizingMaskIntoConstraints:NO];
     [self.heightAnchor constraintEqualToConstant:118.0f].active = YES;
+    
+    self.backgroundColor = self.tintColor;
     
     self.contentView = ({
         UIView *f = [UIView new];
@@ -68,6 +94,11 @@
             b;
         });
         f.layer.cornerRadius = 4.0f;
+        f.borderStyle = UITextBorderStyleNone;
+        f.layer.shadowColor = [UIColor blackColor].CGColor;
+        f.layer.shadowOffset = CGSizeMake(0, 1);
+        f.layer.shadowOpacity = .27f;
+        f.layer.shadowRadius = 1.7;
         [f setTranslatesAutoresizingMaskIntoConstraints:NO];
         [self.contentView addSubview:f];
         [f.topAnchor constraintEqualToAnchor:self.contentView.topAnchor constant:6].active = YES;
@@ -77,6 +108,8 @@
         f;
     });
     
+//    [self.tf letShadowWithSize:CGSizeMake(0, 1) opacity:.27f radius:1.7];
+    
     self.leftBarItem = (UIButton *)self.tf.leftView;
     
     NSArray *weekdays = @[ @"S", @"M", @"T", @"W", @"T", @"F", @"S" ];
@@ -84,10 +117,11 @@
     self.stackView = [[UIStackView alloc] initWithArrangedSubviews:({
         __block NSMutableArray<__kindof UIView *> *labels = [NSMutableArray array];
         [weekdays enumerateObjectsUsingBlock:^(NSString *day, NSUInteger index, BOOL *sS){
-            UILabel *l = [[UILabel alloc] init];
-            l.textColor = [UIColor whiteColor];
-            l.text = day;
-            l.textAlignment = NSTextAlignmentCenter;
+            UIButton *l = [[UIButton alloc] init];
+            l.tag = 1000 + index;
+            [l addTarget:self action:@selector(toggle:) forControlEvents:UIControlEventTouchUpInside];
+            [l setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+            [l setTitle:day forState:UIControlStateNormal];
             [labels addObject:l];
         }];
         labels;
@@ -98,7 +132,7 @@
     self.stackView.distribution = UIStackViewDistributionFillEqually;
     self.stackView.translatesAutoresizingMaskIntoConstraints = NO;
     
-    [self.contentView addSubview:self.stackView];
+    [self.contentView insertSubview:self.stackView belowSubview:self.tf];
     [self.stackView.heightAnchor constraintEqualToConstant:42].active = YES;
     [self.stackView.leftAnchor constraintEqualToAnchor:self.contentView.leftAnchor constant:8].active = YES;
     [self.stackView.rightAnchor constraintEqualToAnchor:self.contentView.rightAnchor constant:-8].active = YES;
@@ -110,9 +144,10 @@
     
     [self.stackView addSubview:self.stackIndicator];
     [self.stackIndicator.widthAnchor constraintEqualToAnchor:self.stackView.widthAnchor multiplier:1.0 / weekdays.count].active = YES;
-    [self.stackIndicator.leftAnchor constraintEqualToAnchor:self.stackView.leftAnchor constant:0].active = YES;
     [self.stackIndicator.bottomAnchor constraintEqualToAnchor:self.stackView.bottomAnchor].active = YES;
     [self.stackIndicator.heightAnchor constraintEqualToConstant:2.0f].active = YES;
+    self.stackIndicatorGuide = [self.stackIndicator.leftAnchor constraintEqualToAnchor:self.stackView.leftAnchor];
+    self.stackIndicatorGuide.active = YES;
 }
 
 @end
