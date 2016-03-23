@@ -144,7 +144,7 @@
         [self floatButtonHide];
     }
     
-    if( !isOnEffect )
+    if( !isOnEffect && Y <= 0 )
     {
         [self barPositionReset];
     }
@@ -258,10 +258,10 @@
                          [self.maskWhiteView removeFromSuperview];
                          [self.accountFloating removeFromSuperview];
                          [self.tipFloating removeFromSuperview];
-                         self.maskWhiteView = self.accountFloating = self.tipFloating = nil;
                          [self.tipsCache enumerateObjectsUsingBlock:^(UILabel *tip, NSUInteger tag, BOOL *sS){
                              [tip removeFromSuperview];
                          }];
+                         self.maskWhiteView = self.accountFloating = self.tipFloating = nil;
                          self.tipsCache = nil;
                      }];
 }
