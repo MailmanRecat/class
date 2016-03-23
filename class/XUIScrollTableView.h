@@ -8,10 +8,20 @@
 
 #import <UIKit/UIKit.h>
 
+@protocol XUIScrollTableViewDelegate;
+
 @interface XUIScrollTableView : UIScrollView
 
-@property( nonatomic, strong ) UITableView *tleft;
-@property( nonatomic, strong ) UITableView *tcenter;
-@property( nonatomic, strong ) UITableView *tright;
+@property( nonatomic, weak   ) id<XUIScrollTableViewDelegate>    xdelegate;
+
+@property( nonatomic, strong ) UITableView                      *tleft;
+@property( nonatomic, strong ) UITableView                      *tcenter;
+@property( nonatomic, strong ) UITableView                      *tright;
+
+@end
+
+@protocol XUIScrollTableViewDelegate <NSObject>
+
+- (void)xscrollViewDidScroll:(UIScrollView *)scrollView;
 
 @end

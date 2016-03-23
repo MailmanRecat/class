@@ -14,20 +14,19 @@
 
 #import "XUIClassBar.h"
 #import "XUIFloatingButton.h"
-#import "XUIDrawerView.h"
 
 #import "XUIScrollTableView.h"
 
-@interface XClassViewController()<UITextFieldDelegate>
+@interface XClassViewController()<UITextFieldDelegate, XUIScrollTableViewDelegate>
 
 @property( nonatomic, strong ) XUIClassBar              *bar;
-@property( nonatomic, strong ) XUIDrawerView            *drawer;
-@property( nonatomic, assign ) BOOL                      hideStatusBar;
+@property( nonatomic, strong ) NSLayoutConstraint       *barGuide;
 
 @property( nonatomic, strong ) XUIFloatingButton        *plusFloating;
+@property( nonatomic, strong ) NSLayoutConstraint       *plusFloatingGuide;
 
-//@property( nonatomic, strong ) UITableView              *fox;
 @property( nonatomic, strong ) XUIScrollTableView       *fox;
+@property( nonatomic, assign ) CGFloat                   foxPointAnchor;
 
 @end
 
@@ -44,26 +43,22 @@
 {
     self.bar = ({
         XUIClassBar *f = [[XUIClassBar alloc] init];
-//        f.tf.placeholder = @"Search For Class";
-//        f.tf.delegate = self;
+        f.tf.placeholder = @"Search for class";
+        f.tf.delegate = self;
         [self.view addSubview:f];
-        [f.topAnchor constraintEqualToAnchor:self.view.topAnchor].active = YES;
         [f.leftAnchor constraintEqualToAnchor:self.view.leftAnchor].active = YES;
         [f.rightAnchor constraintEqualToAnchor:self.view.rightAnchor].active = YES;
-        f;
-    });
-    
-    self.drawer = ({
-        XUIDrawerView *f = [[XUIDrawerView alloc] initWithItems:nil];
-        f.translatesAutoresizingMaskIntoConstraints = NO;
+        self.barGuide = [f.topAnchor constraintEqualToAnchor:self.view.topAnchor];
+        self.barGuide.active = YES;
         f;
     });
     
     self.fox = ({
         XUIScrollTableView *f = [[XUIScrollTableView alloc] init];
         f.translatesAutoresizingMaskIntoConstraints = NO;
+        f.xdelegate = self;
         [self.view insertSubview:f belowSubview:self.bar];
-        [f.topAnchor constraintEqualToAnchor:self.view.topAnchor constant:98].active = YES;
+        [f.topAnchor constraintEqualToAnchor:self.view.topAnchor].active = YES;
         [f.leftAnchor constraintEqualToAnchor:self.view.leftAnchor].active = YES;
         [f.rightAnchor constraintEqualToAnchor:self.view.rightAnchor].active = YES;
         [f.bottomAnchor constraintEqualToAnchor:self.view.bottomAnchor].active = YES;
@@ -76,46 +71,88 @@
         [f addTarget:self action:@selector(search) forControlEvents:UIControlEventTouchUpInside];
         [self.view addSubview:f];
         [f.rightAnchor constraintEqualToAnchor:self.view.rightAnchor constant:-16].active = YES;
-        [f.bottomAnchor constraintEqualToAnchor:self.view.bottomAnchor constant:-16].active = YES;
+        self.plusFloatingGuide = [f.bottomAnchor constraintEqualToAnchor:self.view.bottomAnchor constant:-16];
+        self.plusFloatingGuide.active = YES;
         f;
     });
 }
 
-//- (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event
-//{
-//    [self.view endEditing:YES];
-//    [self.view addSubview:self.drawer];
-//    [self.drawer.topAnchor constraintEqualToAnchor:self.view.topAnchor].active = YES;
-//    [self.drawer.leftAnchor constraintEqualToAnchor:self.view.leftAnchor].active = YES;
-//    [self.drawer.rightAnchor constraintEqualToAnchor:self.view.rightAnchor].active = YES;
-//    [self.drawer.bottomAnchor constraintEqualToAnchor:self.view.bottomAnchor].active = YES;
-//    
-//    self.hideStatusBar = YES;
-//    
-//    [self.drawer openDrawer];
-//    
-//    XOptionsPickerViewController *p = [[XOptionsPickerViewController alloc] init];
-//    p.modalPresentationStyle = UIModalPresentationOverCurrentContext;
-//    
-//    [self presentViewController:p animated:NO completion:nil];
-//}
+- (void)floatButtonHide
+{
+    [self plusFloadButtonHide:YES animation:YES];
+}
+
+- (void)floatButtonShow
+{
+    [self plusFloadButtonHide:NO animation:YES];
+}
+
+- (void)plusFloadButtonHide:(BOOL)hide animation:(BOOL)animation
+{
+    [self.plusFloatingGuide setConstant:hide ? 64 : -16];
+    [UIView animateWithDuration:animation ? .25f : .0f delay:.0f options:( 7 << 16 )
+                     animations:^{
+                         [self.view layoutIfNeeded];
+                     }completion:nil];
+}
+
+- (void)barEffectForDistance:(CGFloat)distance
+{
+    self.barGuide.constant += distance;
+    if( self.barGuide.constant > 0   ) self.barGuide.constant = 0;
+    if( self.barGuide.constant < -98 ) self.barGuide.constant = -98;
+    
+    self.bar.contentView.alpha = 1 - (fabs(self.barGuide.constant) / 98);
+    
+    [self.view layoutIfNeeded];
+}
+
+- (void)barPositionReset
+{
+    self.barGuide.constant = 0;
+    self.bar.contentView.alpha = 1;
+    [self selfViewLayoutIfNeed];
+}
+
+- (BOOL)isOnEffectArea:(CGFloat)point
+{
+    return point > -98 && point < self.fox.tcenter.contentSize.height - self.fox.tcenter.frame.size.height;
+}
+
+- (void)xscrollViewDidScroll:(UIScrollView *)scrollView
+{
+    if( scrollView != self.fox.tcenter ) return;
+    CGFloat Y       = scrollView.contentOffset.y;
+    CGFloat offset  = Y - self.foxPointAnchor;
+    
+    BOOL isOnEffect = [self isOnEffectArea:Y];
+    
+    if(  offset < 0 && isOnEffect )
+    {
+        [self barEffectForDistance:-offset];
+        [self floatButtonShow];
+    }
+    else if( isOnEffect )
+    {
+        [self barEffectForDistance:-offset];
+        [self floatButtonHide];
+    }
+    
+    if( !isOnEffect )
+    {
+        [self barPositionReset];
+    }
+    
+    self.foxPointAnchor = Y;
+}
 
 - (void)search
 {
-    XNavigationController *X = [[XNavigationController alloc] initWithRootViewController:[XSearchFieldViewController new]];
+//    XNavigationController *X = [[XNavigationController alloc] initWithRootViewController:[XSearchFieldViewController new]];
     
     XOptionsPickerViewController *op = [[XOptionsPickerViewController alloc] init];
     op.modalPresentationStyle = UIModalPresentationOverCurrentContext;
     [self presentViewController:op animated:YES completion:nil];
-}
-
-- (void)setHideStatusBar:(BOOL)hideStatusBar
-{
-    if( _hideStatusBar != hideStatusBar )
-    {
-        _hideStatusBar = hideStatusBar;
-        [self setNeedsStatusBarAppearanceUpdate];
-    }
 }
 
 - (BOOL)textFieldShouldBeginEditing:(UITextField *)textField
@@ -124,9 +161,12 @@
     return NO;
 }
 
-- (BOOL)prefersStatusBarHidden
+- (void)selfViewLayoutIfNeed
 {
-    return self.hideStatusBar;
+    [UIView animateWithDuration:.25f delay:.0f options:( 7 << 16 )
+                     animations:^{
+                         [self.view layoutIfNeeded];
+                     }completion:nil];
 }
 
 - (UIStatusBarStyle)preferredStatusBarStyle

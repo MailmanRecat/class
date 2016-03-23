@@ -46,6 +46,7 @@
     self.contentInset = UIEdgeInsetsMake(0, 0, 0, 0);
     self.scrollEnabled = NO;
     self.editable = NO;
+    self.selectable = NO;
     self.TLabel = ({
         UILabel *l = [[UILabel alloc] init];
         [self addSubview:l];

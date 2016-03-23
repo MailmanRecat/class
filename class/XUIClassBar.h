@@ -10,8 +10,8 @@
 
 @interface XUIClassBar : UIView
 
-@property( nonatomic, strong ) UIView      *contentView;
-@property( nonatomic, strong ) UITextField *tf;
-@property( nonatomic, strong ) UIButton    *leftBarItem;
+@property( nonatomic, strong ) UIView                   *contentView;
+@property( nonatomic, strong ) UITextField              *tf;
+@property( nonatomic, strong ) UIButton                 *leftBarItem;
 
 @end
