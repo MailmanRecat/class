@@ -30,7 +30,6 @@
 		E4C456B51CA024F40003C460 /* UITableView+Fox.m in Sources */ = {isa = PBXBuildFile; fileRef = E4C456B01CA024F40003C460 /* UITableView+Fox.m */; };
 		E4C456B61CA024F40003C460 /* UITableViewFunctionalCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E4C456B21CA024F40003C460 /* UITableViewFunctionalCell.m */; };
 		E4C456B71CA024F40003C460 /* UITableViewFunctional2Cell.m in Sources */ = {isa = PBXBuildFile; fileRef = E4C456B41CA024F40003C460 /* UITableViewFunctional2Cell.m */; };
-		E4C456BA1CA026650003C460 /* XUILabel.m in Sources */ = {isa = PBXBuildFile; fileRef = E4C456B91CA026650003C460 /* XUILabel.m */; };
 		E4C456BD1CA029D90003C460 /* XUIClassEdtingBar.m in Sources */ = {isa = PBXBuildFile; fileRef = E4C456BC1CA029D90003C460 /* XUIClassEdtingBar.m */; };
 		E4C456C01CA02FC50003C460 /* XClass.m in Sources */ = {isa = PBXBuildFile; fileRef = E4C456BF1CA02FC50003C460 /* XClass.m */; };
 		E4C456C31CA050C50003C460 /* UITableViewFunctionalXCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E4C456C21CA050C50003C460 /* UITableViewFunctionalXCell.m */; };
@@ -38,6 +37,8 @@
 		E4C456C91CA105970003C460 /* XUINoteView.m in Sources */ = {isa = PBXBuildFile; fileRef = E4C456C81CA105960003C460 /* XUINoteView.m */; };
 		E4C456D21CA287B50003C460 /* XClassSearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E4C456D11CA287B50003C460 /* XClassSearchViewController.m */; };
 		E4C456D51CA2E1940003C460 /* XTag.m in Sources */ = {isa = PBXBuildFile; fileRef = E4C456D41CA2E1940003C460 /* XTag.m */; };
+		E4C456DA1CA2E93C0003C460 /* XTodayTipViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E4C456D91CA2E93C0003C460 /* XTodayTipViewController.m */; };
+		E4C456DD1CA2E9920003C460 /* XUIBar.m in Sources */ = {isa = PBXBuildFile; fileRef = E4C456DC1CA2E9920003C460 /* XUIBar.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -103,8 +104,6 @@
 		E4C456B21CA024F40003C460 /* UITableViewFunctionalCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UITableViewFunctionalCell.m; sourceTree = "<group>"; };
 		E4C456B31CA024F40003C460 /* UITableViewFunctional2Cell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UITableViewFunctional2Cell.h; sourceTree = "<group>"; };
 		E4C456B41CA024F40003C460 /* UITableViewFunctional2Cell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UITableViewFunctional2Cell.m; sourceTree = "<group>"; };
-		E4C456B81CA026650003C460 /* XUILabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XUILabel.h; sourceTree = "<group>"; };
-		E4C456B91CA026650003C460 /* XUILabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XUILabel.m; sourceTree = "<group>"; };
 		E4C456BB1CA029D90003C460 /* XUIClassEdtingBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XUIClassEdtingBar.h; sourceTree = "<group>"; };
 		E4C456BC1CA029D90003C460 /* XUIClassEdtingBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XUIClassEdtingBar.m; sourceTree = "<group>"; };
 		E4C456BE1CA02FC50003C460 /* XClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XClass.h; sourceTree = "<group>"; };
@@ -119,6 +118,10 @@
 		E4C456D11CA287B50003C460 /* XClassSearchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XClassSearchViewController.m; sourceTree = "<group>"; };
 		E4C456D31CA2E1940003C460 /* XTag.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XTag.h; sourceTree = "<group>"; };
 		E4C456D41CA2E1940003C460 /* XTag.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XTag.m; sourceTree = "<group>"; };
+		E4C456D81CA2E93C0003C460 /* XTodayTipViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XTodayTipViewController.h; sourceTree = "<group>"; };
+		E4C456D91CA2E93C0003C460 /* XTodayTipViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XTodayTipViewController.m; sourceTree = "<group>"; };
+		E4C456DB1CA2E9920003C460 /* XUIBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XUIBar.h; sourceTree = "<group>"; };
+		E4C456DC1CA2E9920003C460 /* XUIBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XUIBar.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -223,8 +226,8 @@
 			children = (
 				E4C456921C9EE2BE0003C460 /* UIFont+MaterialDesignIcons.h */,
 				E4C456931C9EE2BE0003C460 /* UIFont+MaterialDesignIcons.m */,
-				E4C456B81CA026650003C460 /* XUILabel.h */,
-				E4C456B91CA026650003C460 /* XUILabel.m */,
+				E4C456DB1CA2E9920003C460 /* XUIBar.h */,
+				E4C456DC1CA2E9920003C460 /* XUIBar.m */,
 				E4C4568F1C9EE08C0003C460 /* XUIClassBar.h */,
 				E4C456901C9EE08C0003C460 /* XUIClassBar.m */,
 				E4C456BB1CA029D90003C460 /* XUIClassEdtingBar.h */,
@@ -273,6 +276,8 @@
 				E4C456A41C9F7A910003C460 /* XBasicPickerViewController.m */,
 				E4C456A61C9F7AE00003C460 /* XOptionsPickerViewController.h */,
 				E4C456A71C9F7AE00003C460 /* XOptionsPickerViewController.m */,
+				E4C456D81CA2E93C0003C460 /* XTodayTipViewController.h */,
+				E4C456D91CA2E93C0003C460 /* XTodayTipViewController.m */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -410,6 +415,7 @@
 			files = (
 				E4C4568B1C9EDF540003C460 /* XNavigationController.m in Sources */,
 				E41EA77D1C9C60E20084A861 /* AppDelegate.m in Sources */,
+				E4C456DD1CA2E9920003C460 /* XUIBar.m in Sources */,
 				E4C456A81C9F7AE00003C460 /* XOptionsPickerViewController.m in Sources */,
 				E4C456AE1CA024E00003C460 /* XClassEdtingViewController.m in Sources */,
 				E4C456B51CA024F40003C460 /* UITableView+Fox.m in Sources */,
@@ -419,6 +425,7 @@
 				E4C456A21C9F02650003C460 /* XUIScrollTableView.m in Sources */,
 				E4C456C61CA05CF50003C460 /* UITableSegmentHeaderView.m in Sources */,
 				E4C456D51CA2E1940003C460 /* XTag.m in Sources */,
+				E4C456DA1CA2E93C0003C460 /* XTodayTipViewController.m in Sources */,
 				E4C456D21CA287B50003C460 /* XClassSearchViewController.m in Sources */,
 				E4C456BD1CA029D90003C460 /* XUIClassEdtingBar.m in Sources */,
 				E4C456C31CA050C50003C460 /* UITableViewFunctionalXCell.m in Sources */,
@@ -428,7 +435,6 @@
 				E4C456C01CA02FC50003C460 /* XClass.m in Sources */,
 				E41EA77A1C9C60E20084A861 /* main.m in Sources */,
 				E4C456941C9EE2BE0003C460 /* UIFont+MaterialDesignIcons.m in Sources */,
-				E4C456BA1CA026650003C460 /* XUILabel.m in Sources */,
 				E4C456B71CA024F40003C460 /* UITableViewFunctional2Cell.m in Sources */,
 				E4C4569C1C9EEACA0003C460 /* UIView+XUIView.m in Sources */,
 				E4C456911C9EE08C0003C460 /* XUIClassBar.m in Sources */,

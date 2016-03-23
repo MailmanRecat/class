@@ -223,7 +223,7 @@
     self.tipFloating     = fbutton([UIFont mdiPencil], self.view.tintColor, -16);
     self.tipsCache       = @[
                              flabel(@"Accounts", self.accountFloating.centerYAnchor),
-                             flabel(@"Tips for today", self.tipFloating.centerYAnchor),
+                             flabel(@"Today tip", self.tipFloating.centerYAnchor),
                              flabel(@"New class", self.plusFloating.centerYAnchor)
                              ];
     
