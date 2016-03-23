@@ -78,7 +78,7 @@
     if( scrollView.contentOffset.y < 0 && !self.reset )
     {
         self.foxTopLayoutGuide.constant -= scrollView.contentOffset.y;
-        NSLog(@"%lf", self.foxTopLayoutGuide.constant);
+//        NSLog(@"%lf", self.foxTopLayoutGuide.constant);
         [self.view layoutIfNeeded];
     }
 }

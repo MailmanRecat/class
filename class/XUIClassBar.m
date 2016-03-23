@@ -86,13 +86,6 @@
             [b setTitle:[UIFont mdiMagnify] forState:UIControlStateNormal];
             b;
         });
-//        f.rightView = ({
-//            UIButton *b = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 44, 44)];
-//            [b.titleLabel setFont:[UIFont MaterialDesignIcons]];
-//            [b setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
-//            [b setTitle:[UIFont mdiAccount] forState:UIControlStateNormal];
-//            b;
-//        });
         f.layer.cornerRadius = 4.0f;
         f.borderStyle = UITextBorderStyleNone;
         f.layer.shadowColor = [UIColor blackColor].CGColor;

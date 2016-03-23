@@ -11,5 +11,6 @@
 @interface XUIFloatingButton : UIButton
 
 - (instancetype)initFromFont:(UIFont *)font title:(NSString *)title;
+- (instancetype)init40FromFont:(UIFont *)font title:(NSString *)title;
 
 @end
