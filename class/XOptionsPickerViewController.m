@@ -12,6 +12,7 @@
 
 @property( nonatomic, strong ) UITableView              *fox;
 @property( nonatomic, strong ) NSLayoutConstraint       *foxTopLayoutGuide;
+@property( nonatomic, assign ) CGFloat                   foxLastAnchor;
 
 @property( nonatomic, assign ) BOOL                      reset;
 
@@ -77,10 +78,11 @@
 {
     if( scrollView.contentOffset.y < 0 && !self.reset )
     {
-        self.foxTopLayoutGuide.constant -= scrollView.contentOffset.y;
-//        NSLog(@"%lf", self.foxTopLayoutGuide.constant);
+        self.foxTopLayoutGuide.constant -= scrollView.contentOffset.y - self.foxLastAnchor;
         [self.view layoutIfNeeded];
     }
+    
+    self.foxLastAnchor = scrollView.contentOffset.y;
 }
 
 - (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate
