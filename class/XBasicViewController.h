@@ -14,6 +14,7 @@
 
 #import "XClass.h"
 
+#import "NSString+craig.h"
 #import "UIView+XUIView.h"
 #import "UIFont+MaterialDesignIcons.h"
 #import "UITableView+Fox.h"
@@ -23,5 +24,7 @@
 @interface XBasicViewController : UIViewController
 
 - (void)dismissSelf;
+
+- (void)selfViewLayoutIfNeed;
 
 @end

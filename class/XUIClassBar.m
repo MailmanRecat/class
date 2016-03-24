@@ -25,6 +25,7 @@
     self = [super init];
     if( self )
     {
+        [self setTintColor:[UIColor colorWithRed:0 green:153 / 255.0 blue:153 / 255.0 alpha:1]];
         [self UI];
     }
     return self;

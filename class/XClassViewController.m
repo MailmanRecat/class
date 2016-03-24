@@ -11,6 +11,7 @@
 #import "XClassViewController.h"
 #import "XClassEdtingViewController.h"
 #import "XOptionsPickerViewController.h"
+#import "XTodayTipViewController.h"
 
 #import "XUIClassBar.h"
 #import "XUIFloatingButton.h"
@@ -73,7 +74,7 @@
     
     self.plusFloating = ({
         XUIFloatingButton *f = [[XUIFloatingButton alloc] initFromFont:[UIFont MaterialDesignIcons] title:[UIFont mdiPlus]];
-        f.backgroundColor = [UIColor colorWithRed:218 / 255.0 green:68 / 255.0 blue:54 / 255.0 alpha:1];
+        f.backgroundColor = [UIColor colorWithRed:212 / 255.0 green:33 / 255.0 blue:17 / 255.0 alpha:1];
         [f addTarget:self action:@selector(actionsStep) forControlEvents:UIControlEventTouchUpInside];
         [self.view addSubview:f];
         [f.rightAnchor constraintEqualToAnchor:self.view.rightAnchor constant:-16].active = YES;
@@ -152,6 +153,12 @@
     self.foxPointAnchor = Y;
 }
 
+- (void)tip
+{
+    [self presentViewController:[XTodayTipViewController new] animated:YES completion:nil];
+    [self actionStepCancel];
+}
+
 - (void)search
 {
 //    XNavigationController *X = [[XNavigationController alloc] initWithRootViewController:[XSearchFieldViewController new]];
@@ -212,7 +219,6 @@
         f.backgroundColor = color;
         f.alpha = .0f;
         f.transform = CGAffineTransformMakeTranslation(0, 16);
-        [f addTarget:self action:@selector(search) forControlEvents:UIControlEventTouchUpInside];
         [self.view addSubview:f];
         [f.centerXAnchor constraintEqualToAnchor:self.plusFloating.centerXAnchor].active = YES;
         [f.bottomAnchor constraintEqualToAnchor:self.plusFloating.topAnchor constant:constant].active = YES;
@@ -226,6 +232,7 @@
                              flabel(@"Today tip", self.tipFloating.centerYAnchor),
                              flabel(@"New class", self.plusFloating.centerYAnchor)
                              ];
+    [self.tipFloating addTarget:self action:@selector(tip) forControlEvents:UIControlEventTouchUpInside];
     
     [UIView animateWithDuration:.25f delay:.0f options:( 7 << 16 )
                      animations:^{
@@ -270,14 +277,6 @@
 {
     [self search];
     return NO;
-}
-
-- (void)selfViewLayoutIfNeed
-{
-    [UIView animateWithDuration:.25f delay:.0f options:( 7 << 16 )
-                     animations:^{
-                         [self.view layoutIfNeeded];
-                     }completion:nil];
 }
 
 - (UIStatusBarStyle)preferredStatusBarStyle
